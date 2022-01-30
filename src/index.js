@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 import App from "./App";
 
 const Global = createGlobalStyle`
@@ -8,9 +8,7 @@ const Global = createGlobalStyle`
   margin:0;
   padding:0;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Apercu Arabic Pro", "Open Sans", sans-serif;
 }
 ul {
   list-style: none;
@@ -22,12 +20,18 @@ img {
   height: auto;
 }`;
 
+const theme = {
+  media: {
+    phone: "(max-width: 768px)",
+  },
+};
+
 ReactDOM.render(
   <React.StrictMode>
-    <>
+    <ThemeProvider theme={theme}>
       <Global />
       <App />
-    </>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -1,14 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import Contact from "./Contact/Contact";
-import FeedbackForm from "./FeedbackForm/FeedbackForm";
-import Footer from "./Footer/Footer";
+import Contact from "./components/Contact";
+import FeedbackForm from "./components/FeedbackForm";
+import Footer from "./components/Footer";
+import Flex from "./components/Flex";
 import { postFeedback } from "./actions/feedbacks";
 
 const AppWrapper = styled.div`
-  width: 100%;
+  width: 1440px;
   min-height: 100vh;
-  padding: 2rem;
+  @media ${(props) => props.theme.media.phone} {
+    max-width: 768px;
+  } ;
 `;
 
 export default function App() {
@@ -19,10 +22,12 @@ export default function App() {
 
   return (
     <AppWrapper>
-      <Contact>
-        <FeedbackForm onSubmit={formSubmitHandler} />
-      </Contact>
-      <Footer />
+      <Flex direction={"column"}>
+        <Contact>
+          <FeedbackForm onSubmit={formSubmitHandler} />
+        </Contact>
+        <Footer />
+      </Flex>
     </AppWrapper>
   );
 }
